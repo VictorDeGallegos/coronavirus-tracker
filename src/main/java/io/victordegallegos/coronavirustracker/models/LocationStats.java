@@ -7,6 +7,7 @@ public class LocationStats {
   private int latestTotalCases;
   private int diffFromPrevDay;
   private int latestTotalCasesRecuperados;
+  private int latestTotalCasesMuertes;
 
   public int getDiffFromPrevDay() {
     return diffFromPrevDay;
@@ -48,6 +49,14 @@ public class LocationStats {
     this.latestTotalCasesRecuperados = latestTotalCasesRecuperados;
   }
 
+  public int getLatestTotalCasesMuertes() {
+    return latestTotalCasesMuertes;
+  }
+
+  public void setLatestTotalCasesMuertes(int latestTotalCasesMuertes) {
+    this.latestTotalCasesMuertes = latestTotalCasesMuertes;
+  }
+
   @Override
   public String toString() {
     return "LocationStats{" +
@@ -55,6 +64,7 @@ public class LocationStats {
         ", country='" + country + '\'' +
         ", latestTotalCases=" + latestTotalCases +
         ", latestTotalCasesRecuperados=" + latestTotalCasesRecuperados +
+        ", latestTotalCasesMuertes=" + latestTotalCasesMuertes +
         '}';
   }
 }
