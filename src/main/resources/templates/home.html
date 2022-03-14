@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Coronavirus Tracker Application 🦠</h1>
+      <p>Esta aplicación enumera el número actual de casos informados en todo el mundo.</p>
+
+      <div class="jumbotron jumbotronimg ">
+        <h1 class="display-3 text-danger" th:text="${totalReportedCases}"></h1>
+        <p class="lead text-danger">Casos totales reportados a partir de hoy.</p>
+        <hr class="my-4" />
+        <p>
+          <span>Desarollado por Victor de Gallegos </span>
+          
+        </p>
+      </div>
+
+      <div class="card-deck">
+        <div class="card border-primary mb-3 mb-3">
+
+          <div class="card-body text-primary">
+            <h2 class="card-title text-center">😷</h2>
+            <h3 class="card-title">Casos totales desde el dia anterior</h3>
+            <h1 th:text="${totalNewCases}"></h1>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card border-success mb-3">
+
+          <div class="card-body text-success">
+            <h2 class="card-title text-center">✅</h2>
+            <h3 class="card-title">Casos totales recuperados</h3>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card border-dark mb-3">
+          
+          <div class="card-body text-dark">
+            <h2 class="card-title text-center">💀</h2>
+            <h3 class="card-title">Casos totales de muertes</h3>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-hover text-center ">
+        <thead class="thead-dark">
+        <tr>
+          <th>Pais</th>
+          <th>Casos totales reportados</th>
+          <th>Cambios desde el dia de ayer</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+          <td th:text="${locationStat.country}"></td>
+          <td th:text="${locationStat.latestTotalCases}">0</td>
+          <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
