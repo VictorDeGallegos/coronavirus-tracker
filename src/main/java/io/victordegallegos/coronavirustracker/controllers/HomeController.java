@@ -30,8 +30,7 @@ public class HomeController {
     int totalReportedCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
     int totalReportedCasesMuertes = allStatsMuertes.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
     int totalNewCases = allStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
-    int totalReportedCasesRecuperados = allStatsRecuperados.stream()
-        .mapToInt(stat -> stat.getLatestTotalCases()).sum();
+    int totalReportedCasesRecuperados = allStatsRecuperados.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
     model.addAttribute("locationStats", allStats);
     model.addAttribute("totalReportedCases", totalReportedCases);
     model.addAttribute("totalReportedCasesMuertes", totalReportedCasesMuertes);

@@ -21,7 +21,7 @@ import io.victordegallegos.coronavirustracker.models.LocationStats;
 @Service
 public class CoronaVirusDataServiceRecuperados {
 
-  private static String VIRUS_RECUPERADOS_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv";
+  private static String RECUPERADOS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv";
 
   private List<LocationStats> allStats = new ArrayList<>();
 
@@ -31,11 +31,11 @@ public class CoronaVirusDataServiceRecuperados {
 
   @PostConstruct
   @Scheduled(cron = "* * 1 * * *")
-  public void fetchVirusDataRecuperados() throws IOException, InterruptedException {
+  public void fetchVirusData() throws IOException, InterruptedException {
     List<LocationStats> newStats = new ArrayList<>();
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create(VIRUS_RECUPERADOS_URL))
+        .uri(URI.create(RECUPERADOS_DATA_URL))
         .build();
     HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
     StringReader csvBodyReader = new StringReader(httpResponse.body());
@@ -44,8 +44,10 @@ public class CoronaVirusDataServiceRecuperados {
       LocationStats locationStat = new LocationStats();
       locationStat.setState(record.get("Province/State"));
       locationStat.setCountry(record.get("Country/Region"));
-      int latestCasesRecuperados = Integer.parseInt(record.get(record.size() - 1));
-      locationStat.setLatestTotalCasesRecuperados(latestCasesRecuperados);
+      int latestCases = Integer.parseInt(record.get(record.size() - 1));
+      int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
+      locationStat.setLatestTotalCases(latestCases);
+      locationStat.setDiffFromPrevDay(latestCases - prevDayCases);
       newStats.add(locationStat);
     }
     this.allStats = newStats;
