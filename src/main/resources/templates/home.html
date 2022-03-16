@@ -19,11 +19,15 @@
       <p>Esta aplicación enumera el número actual de casos informados en todo el mundo.</p>
 
       <div class="jumbotron jumbotronimg">
-        <h1 class="display-3 texttotal" th:text="${totalReportedCases}"></h1>
+        <h1 class="display-4 texttotal font-weight-bold" th:text="${totalReportedCases}"></h1>
         <p class="lead texttotal">Casos totales reportados a partir de hoy.</p>
         <hr class="my-4" />
         <p>
-          Desarrollado por
+          Casos de coronavirus (COVID-19), proporcionados por
+          <a href="https://systems.jhu.edu/research/public-health/ncov/"><span class="label label-danger">JHU CSSE</span></a>
+        </p>
+        <p>
+          Desarrollado con ❤️ por
           <a href="https://github.com/VictorDeGallegos"><span class="label label-danger">Victor de Gallegos</span></a>
         </p>
       </div>
@@ -56,7 +60,7 @@
           </div>
         </div>
       </div>
-      <table class="table table-hover text-center">
+      <table class="table table-striped text-center">
         <thead class="thead-dark">
           <tr>
             <th>Pais</th>
