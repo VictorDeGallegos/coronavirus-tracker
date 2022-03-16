@@ -10,66 +10,65 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
   <body>
     <div class="container">
-      <h1>Coronavirus Tracker Application 🦠</h1>
+      <h1 class="title">Coronavirus Tracker Application 🦠</h1>
       <p>Esta aplicación enumera el número actual de casos informados en todo el mundo.</p>
 
-      <div class="jumbotron jumbotronimg ">
+      <div class="jumbotron jumbotronimg">
         <h1 class="display-3 text-danger" th:text="${totalReportedCases}"></h1>
         <p class="lead text-danger">Casos totales reportados a partir de hoy.</p>
         <hr class="my-4" />
         <p>
-          <span>Desarollado por Victor de Gallegos </span>
-          
+          Desarrollado por
+          <a href="https://github.com/VictorDeGallegos"><span class="label label-danger">Victor de Gallegos</span></a>
         </p>
       </div>
 
       <div class="card-deck">
-        <div class="card border-primary mb-3 mb-3">
-
+        <div class="card border-primary mb-3">
+          <div class="card-header bg-primary text-white textcards">Infectados 😷</div>
           <div class="card-body text-primary">
-            <h2 class="card-title text-center">😷</h2>
-            <h3 class="card-title">Casos totales desde el dia anterior</h3>
-            <h1 th:text="${totalNewCases}"></h1>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h1 class="text-center" th:text="${totalNewCases}"></h1>
+            <h5 class="card-title text-center">Casos totales registrados desde ayer</h5>
+            <p class="card-text"><small class="text-muted">Last updated 24 hrs ago</small></p>
           </div>
         </div>
-        <div class="card border-success mb-3">
 
+        <div class="card border-success mb-3">
+          <div class="card-header bg-success text-white textcards">Recuperados ✅</div>
           <div class="card-body text-success">
-            <h2 class="card-title text-center">✅</h2>
-            <h3 class="card-title">Casos totales recuperados</h3>
-            <h1 th:text="${totalReportedCasesRecuperados}"></h1>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h1 class="text-center" th:text="${totalReportedCasesRecuperados}"></h1>
+            <h5 class="card-title text-center">Casos totales registrados de recuperados</h5>
+            <p class="card-text"><small class="text-muted">Last updated 24 hrs ago</small></p>
           </div>
         </div>
+
         <div class="card border-dark mb-3">
-          
+          <div class="card-header bg-dark text-white textcards">Muertes 💀</div>
           <div class="card-body text-dark">
-            <h2 class="card-title text-center">💀</h2>
-            <h3 class="card-title">Casos totales de muertes</h3>
-            <h1 th:text="${totalReportedCasesMuertes}"></h1>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h1 class="text-center" th:text="${totalReportedCasesMuertes}"></h1>
+            <h5 class="card-title text-center">Casos totales registrados de muertes</h5>
+            <p class="card-text"><small class="text-muted">Last updated 24 hrs ago</small></p>
           </div>
         </div>
       </div>
-
-      <table class="table table-hover text-center ">
+      <table class="table table-hover text-center">
         <thead class="thead-dark">
-        <tr>
-          <th>Pais</th>
-          <th>Casos totales reportados</th>
-          <th>Cambios desde el dia de ayer</th>
-        </tr>
-        <tr th:each="locationStat : ${locationStats}">
-          <td th:text="${locationStat.country}"></td>
-          <td th:text="${locationStat.latestTotalCases}">0</td>
-          <td th:text="${locationStat.diffFromPrevDay}">0</td>
-        </tr>
+          <tr>
+            <th>Pais</th>
+            <th>Casos totales reportados</th>
+            <th>Cambios desde el dia de ayer</th>
+          </tr>
+          <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+          </tr>
+        </thead>
       </table>
     </div>
   </body>

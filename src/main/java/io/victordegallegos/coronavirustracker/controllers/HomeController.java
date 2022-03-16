@@ -17,16 +17,21 @@ public class HomeController {
 
   @Autowired
   CoronaVirusDataService coronaVirusDataService;
+  @Autowired
   CoronaVirusDataServiceRecuperados coronaVirusDataServiceRecuperados;
+  @Autowired
   CoronaVirusDataServiceMuertes coronaVirusDataServiceMuertes;
 
   @GetMapping("/")
   public String home(Model model) {
     List<LocationStats> allStats = coronaVirusDataService.getAllStats();
+    List<LocationStats> allStatsRecuperados = coronaVirusDataServiceRecuperados.getAllStats();
+    List<LocationStats> allStatsMuertes = coronaVirusDataServiceMuertes.getAllStats();
     int totalReportedCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
-    int totalReportedCasesMuertes = allStats.stream().mapToInt(stat -> stat.getLatestTotalCasesMuertes()).sum();
+    int totalReportedCasesMuertes = allStatsMuertes.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
     int totalNewCases = allStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
-    int totalReportedCasesRecuperados = allStats.stream().mapToInt(stat -> stat.getLatestTotalCasesRecuperados()).sum();
+    int totalReportedCasesRecuperados = allStatsRecuperados.stream()
+        .mapToInt(stat -> stat.getLatestTotalCases()).sum();
     model.addAttribute("locationStats", allStats);
     model.addAttribute("totalReportedCases", totalReportedCases);
     model.addAttribute("totalReportedCasesMuertes", totalReportedCasesMuertes);

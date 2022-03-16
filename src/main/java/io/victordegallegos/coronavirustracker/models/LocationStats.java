@@ -49,14 +49,6 @@ public class LocationStats {
     this.latestTotalCasesRecuperados = latestTotalCasesRecuperados;
   }
 
-  public int getLatestTotalCasesMuertes() {
-    return latestTotalCasesMuertes;
-  }
-
-  public void setLatestTotalCasesMuertes(int latestTotalCasesMuertes) {
-    this.latestTotalCasesMuertes = latestTotalCasesMuertes;
-  }
-
   @Override
   public String toString() {
     return "LocationStats{" +
